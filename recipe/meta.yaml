@@ -52,9 +52,14 @@ test:
     #- conda inspect objects -p $PREFIX libtiff  # [osx]
 
 about:
-  home: http://www.remotesensing.org/libtiff/
+  home: http://www.libtiff.org/
   license: HPND
+  license_url: http://www.libtiff.org/misc.html
   summary: 'Support for the Tag Image File Format (TIFF).'
+  description: |
+    This software provides support for the Tag Image File Format (TIFF), a
+    widely used format for storing image data.
+  doc_url: http://www.libtiff.org/document.html
 
 extra:
    recipe-maintainers:
