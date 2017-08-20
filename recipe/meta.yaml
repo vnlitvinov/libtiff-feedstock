@@ -9,31 +9,17 @@ source:
   sha256: 6e7bdeec2c310734e734d19aae3a71ebe37a4d842e0e23dbb1b8921c0026cfcd
 
 build:
-  number: 0
-  skip: true  # [win and py36]
-  features:
-    - vc9  # [win and py27]
-    - vc14  # [win and (py35 or py36)]
+  number: 8
 
 requirements:
   host:
-    - zlib 1.2.*
-    - jpeg 9*
-    - xz 5.2.*  # [not win]
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and py35]
+    - zlib
+    - jpeg
+    - xz    # [not win]
   build:
     - cmake  # [win]
-    - python  # [win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-  run:
-    - zlib 1.2.11
-    - jpeg 9*
-    - xz 5.2.*  # [not win]
-    - vc 9  # [win and py27]
-    - vc 14  # [win and (py35 or py36)]
 
 test:
   commands:
@@ -62,3 +48,4 @@ extra:
     - jakirkham
     - ocefpaf
     - stuarteberg
+    - msarahan
