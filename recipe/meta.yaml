@@ -13,32 +13,32 @@ source:
     - def_snprintf.patch  # [win]
 
 build:
-  number: 7
+  number: 8
   features:
-    - vc9  # [win and py27]
-    - vc10  # [win and py34]
-    - vc14  # [win and py35]
+    - vc{{ vc }}  # [win]
 
 requirements:
   host:
-    - zlib 1.2.*
-    - jpeg 9*
-    - xz 5.2.*  # [not win]
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and py35]
+    - zlib
+    - jpeg
+    - xz    # [not win]
   build:
     - cmake  # [win]
-    - python  # [win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-  run:
-    - zlib 1.2.*
-    - jpeg 9*
-    - xz 5.2.*  # [not win]
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and py35]
+  # run:
+    # zlib removed here because zlib package has run_exports for itself
+    #    https://github.com/AnacondaRecipes/zlib-feedstock/pull/2
+    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
+    # - zlib
+    # jpeg removed here because package has run_exports for itself
+    #    https://github.com/AnacondaRecipes/jpeg-feedstock/pull/1
+    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
+    # - jpeg 9*
+    # xz removed here because xz package has run_exports for itself
+    #    https://github.com/AnacondaRecipes/xz-feedstock/pull/2
+    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
+    # - xz 5.2.*  # [not win]
 
 test:
   commands:
@@ -66,3 +66,4 @@ extra:
     - jakirkham
     - ocefpaf
     - stuarteberg
+    - msarahan
