@@ -26,7 +26,7 @@ fi
             --with-lzma-include-dir="${PREFIX}/include" \
             --with-lzma-lib-dir="${PREFIX}/lib"
 
-make
+make -j${CPU_COUNT}
 eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib make check
 make install
 
