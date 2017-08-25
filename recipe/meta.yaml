@@ -12,14 +12,14 @@ build:
   number: 8
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake   # [win]
   host:
     - zlib
     - jpeg
     - xz    # [not win]
-  build:
-    - cmake  # [win]
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
 
 test:
   commands:
