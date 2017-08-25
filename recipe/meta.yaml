@@ -18,27 +18,15 @@ build:
     - vc{{ vc }}  # [win]
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake   # [win]
+    - python  # [win]
   host:
     - zlib
     - jpeg
     - xz    # [not win]
-  build:
-    - cmake  # [win]
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-  # run:
-    # zlib removed here because zlib package has run_exports for itself
-    #    https://github.com/AnacondaRecipes/zlib-feedstock/pull/2
-    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
-    # - zlib
-    # jpeg removed here because package has run_exports for itself
-    #    https://github.com/AnacondaRecipes/jpeg-feedstock/pull/1
-    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
-    # - jpeg 9*
-    # xz removed here because xz package has run_exports for itself
-    #    https://github.com/AnacondaRecipes/xz-feedstock/pull/2
-    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
-    # - xz 5.2.*  # [not win]
 
 test:
   commands:
