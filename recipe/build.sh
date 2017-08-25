@@ -1,24 +1,15 @@
 #!/bin/bash
 
-# FIXME: This is a hack to make sure the environment is activated.
-# The reason this is required is due to the conda-build issue
-# mentioned below.
-#
-# https://github.com/conda/conda-build/issues/910
-#
-#source activate "${CONDA_DEFAULT_ENV}"
-
 if [[ $(uname) == Darwin ]]; then
   export LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-  export CXX="${CXX} -stdlib=libc++"
-  export LDFLAGS="${LDFLAGS} -mmacosx-version-min=10.9"
-  export MACOSX_DEPLOYMENT_TARGET=10.9
 elif [[ $(uname) == Linux ]]; then
   export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
 fi
 
 # Pass explicit paths to the prefix for each dependency.
 ./configure --prefix="${PREFIX}" \
+            --host=$HOST \
+            --build=$BUILD \
             --with-zlib-include-dir="${PREFIX}/include" \
             --with-zlib-lib-dir="${PREFIX}/lib" \
             --with-jpeg-include-dir="${PREFIX}/include" \
