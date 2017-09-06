@@ -11,15 +11,15 @@ source:
   patches:
     # http://comments.gmane.org/gmane.comp.video.tiff/6889
     - def_snprintf.patch  # [win]
-    # Does a very good job of maintaining compatibility.
-    #    https://abi-laboratory.pro/tracker/timeline/libtiff/
-    run_exports:
-      - {{ pin_subpackage('libtiff', max_pin='x') }}
 
 build:
   number: 9
   features:
     - vc{{ vc }}  # [win]
+  # Does a very good job of maintaining compatibility.
+  #    https://abi-laboratory.pro/tracker/timeline/libtiff/
+  run_exports:
+    - {{ pin_subpackage('libtiff', max_pin='x') }}
 
 requirements:
   build:
