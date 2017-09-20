@@ -6,8 +6,5 @@ cmake -G"%CMAKE_GENERATOR%"                      ^
       .
 if errorlevel 1 exit /b 1
 
-cmake --build .
-if errorlevel 1 exit /b 1
-
-cmake --build . --target install
+cmake --build . --target install --config Release
 if errorlevel 1 exit /b 1
