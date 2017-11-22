@@ -9,7 +9,7 @@ source:
   sha256: 6e7bdeec2c310734e734d19aae3a71ebe37a4d842e0e23dbb1b8921c0026cfcd
 
 build:
-  number: 11
+  number: 0
   run_exports:
     # Does a very good job of maintaining compatibility.
     #    https://abi-laboratory.pro/tracker/timeline/libtiff/
