@@ -1,0 +1,14 @@
+VERBOSE_AT:
+- V=1
+c_compiler:
+- gcc
+cxx_compiler:
+- gxx
+jpeg:
+- '9'
+libtiff:
+- 4.0.8
+xz:
+- '5.2'
+zlib:
+- '1.2'

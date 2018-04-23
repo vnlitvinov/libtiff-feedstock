@@ -1,0 +1,20 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '10.9'
+VERBOSE_AT:
+- V=1
+c_compiler:
+- clang
+cxx_compiler:
+- clangxx
+jpeg:
+- '9'
+libtiff:
+- 4.0.8
+macos_machine:
+- x86_64-apple-darwin13.4.0
+macos_min_version:
+- '10.9'
+xz:
+- '5.2'
+zlib:
+- '1.2'

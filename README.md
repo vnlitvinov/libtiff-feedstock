@@ -1,7 +1,7 @@
 About libtiff
 =============
 
-Home: http://www.remotesensing.org/libtiff/
+Home: http://www.libtiff.org/
 
 Package license: HPND
 
@@ -9,19 +9,23 @@ Feedstock license: BSD 3-Clause
 
 Summary: Support for the Tag Image File Format (TIFF).
 
+This software provides support for the Tag Image File Format (TIFF), a
+widely used format for storing image data.
 
 
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/libtiff-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/libtiff-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/libtiff-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/libtiff-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/libtiff-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/libtiff-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/libtiff-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/libtiff-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/libtiff-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/libtiff-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/libtiff-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/libtiff-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/libtiff/badges/version.svg)](https://anaconda.org/conda-forge/libtiff)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/libtiff/badges/downloads.svg)](https://anaconda.org/conda-forge/libtiff)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libtiff-green.svg)](https://anaconda.org/conda-forge/libtiff) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libtiff.svg)](https://anaconda.org/conda-forge/libtiff) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libtiff.svg)](https://anaconda.org/conda-forge/libtiff) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libtiff.svg)](https://anaconda.org/conda-forge/libtiff) |
 
 Installing libtiff
 ==================
