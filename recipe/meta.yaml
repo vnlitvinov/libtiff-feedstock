@@ -20,10 +20,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake   # [win]
+    - make    # [unix]
   host:
     - zlib
     - jpeg
-    - xz    # [not win]
+    - xz    # [not win or vc>=14]
 
 test:
   commands:
