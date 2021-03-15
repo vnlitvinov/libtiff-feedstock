@@ -14,7 +14,7 @@ source:
       # binary compatibility on windows.
       # https://gitlab.com/libtiff/libtiff/issues/173
       # https://github.com/python-pillow/Pillow/issues/4237
-      - use_unix_io.patch
+      - patches/use_unix_io.patch
 
     # https://github.com/python-pillow/Pillow/issues/4237
     # https://gitlab.com/libtiff/libtiff/issues/173
@@ -27,7 +27,7 @@ source:
     fn: hopper_lzw.tif
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win and vc<14]
   # Does a very good job of maintaining compatibility.
   #    https://abi-laboratory.pro/tracker/timeline/libtiff/
@@ -75,7 +75,7 @@ test:
     # until full imagecodecs is supported in conda-forge
     # (imagecodecs-lite doesn't seem to support the decompression algorithm
     #  we need for this test)
-    - tifffile 2019   # [not (aarch64 or ppc64le)]
+    - tifffile    # [not (aarch64 or ppc64le)]
   files:
     - downstream_tests.py
   source_files:
