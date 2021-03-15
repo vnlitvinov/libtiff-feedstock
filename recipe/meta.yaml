@@ -1,19 +1,34 @@
-{% set version = "4.1.0" %}
+{% set version = "4.2.0" %}
 
 package:
   name: libtiff
   version: {{ version }}
 
 source:
-  url: https://download.osgeo.org/libtiff/tiff-{{ version }}.tar.gz
-  sha256: 5d29f32517dadb6dbcd1255ea5bbc93a2b54b94fbf83653b4d65c7d6775b8634
-  patches:
-    - patches/0003-CVE-2017-11613.patch
-    - patches/fix_TIFFReadRawStrip_man_page_typo.patch
+  - url: https://download.osgeo.org/libtiff/tiff-{{ version }}.tar.gz
+    sha256: eb0484e568ead8fa23b513e9b0041df7e327f4ee2d22db5a533929dfc19633cb
+    folder: .
+    patches:
+      - patches/fix_TIFFReadRawStrip_man_page_typo.patch
+      # It seems that a recent patch in tifffile 4.1 may have broken
+      # binary compatibility on windows.
+      # https://gitlab.com/libtiff/libtiff/issues/173
+      # https://github.com/python-pillow/Pillow/issues/4237
+      - use_unix_io.patch
+
+    # https://github.com/python-pillow/Pillow/issues/4237
+    # https://gitlab.com/libtiff/libtiff/issues/173
+    # This change isn't so safe as it stops compatibility with libtiff on pypi
+    # https://github.com/conda-forge/libtiff-feedstock/pull/49#issuecomment-570708183
+    # - patches/173_tif_unix_and_tif_win32_compatibility.patch
+  # Test image used for regression testing
+  - url: https://github.com/python-pillow/Pillow/raw/master/Tests/images/hopper_lzw.tif
+    sha256: 246e5de06ed6f4c63d8389fcb3342b18909e0f362a5a22f76f779ad52f46090d
+    fn: hopper_lzw.tif
 
 build:
   number: 0
-  skip: True  # [win and vc<14]
+  skip: true  # [win and vc<14]
   # Does a very good job of maintaining compatibility.
   #    https://abi-laboratory.pro/tracker/timeline/libtiff/
   run_exports:
@@ -25,45 +40,37 @@ build:
 
 requirements:
   build:
+    - libtool  # [unix]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - cmake   # [win]
-    - ninja   # [win]
-    - make    # [not win]
+    - cmake  # [win]
+    - ninja  # [win]
+    - make  # [not win]
   host:
     - zlib
     - jpeg
     - xz
     - zstd
+    - libwebp-base  # [linux or osx]
   run:
     - zlib
     - jpeg
     - xz
     - zstd
-
-test:
-  commands:
-    - test -f ${PREFIX}/lib/libtiff.a                            # [unix]
-    - test -f ${PREFIX}/lib/libtiffxx.a                          # [unix]
-    - test -f ${PREFIX}/lib/libtiff${SHLIB_EXT}                  # [unix]
-    - test -f ${PREFIX}/lib/libtiffxx${SHLIB_EXT}                # [unix]
-    - if not exist %PREFIX%\\Library\\bin\\tiff.dll exit 1       # [win]
-    - if not exist %PREFIX%\\Library\\bin\\tiffxx.dll exit 1     # [win]
-    - if not exist %PREFIX%\\Library\\bin\\libtiff.dll exit 1    # [win]
-    - if not exist %PREFIX%\\Library\\bin\\libtiffxx.dll exit 1  # [win]
+    - libwebp-base  # [linux or osx]
 
 about:
   home: http://www.libtiff.org/
   license: HPND
   license_file: COPYRIGHT
-  summary: 'Support for the Tag Image File Format (TIFF).'
+  summary: Support for the Tag Image File Format (TIFF).
   description: |
     This software provides support for the Tag Image File Format (TIFF), a
     widely used format for storing image data.
   doc_url: http://www.libtiff.org/document.html
 
 extra:
-   recipe-maintainers:
+  recipe-maintainers:
     - jakirkham
     - mingwandroid
     - msarahan
