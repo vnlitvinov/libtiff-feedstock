@@ -1,4 +1,4 @@
-{% set version = "4.2.0" %}
+{% set version = "4.3.0" %}
 
 package:
   name: libtiff
@@ -6,7 +6,7 @@ package:
 
 source:
   - url: https://download.osgeo.org/libtiff/tiff-{{ version }}.tar.gz
-    sha256: eb0484e568ead8fa23b513e9b0041df7e327f4ee2d22db5a533929dfc19633cb
+    sha256: 0e46e5acb087ce7d1ac53cf4f56a09b221537fc86dfc5daaad1c2e89e1b37ac8
     folder: .
     patches:
       - patches/fix_TIFFReadRawStrip_man_page_typo.patch
@@ -14,13 +14,19 @@ source:
       # binary compatibility on windows.
       # https://gitlab.com/libtiff/libtiff/issues/173
       # https://github.com/python-pillow/Pillow/issues/4237
-      - use_unix_io.patch
+      #- use_unix_io.patch
+      
+      # This patch is included in >4.3.0
+      # remove automake and autoconf when removing this patch
+      # also remember to remove the `autoreconf` command in the `build.sh`
+      # script
+      #- patches/243_osx_buidl_failing_patch.patch
 
-    # https://github.com/python-pillow/Pillow/issues/4237
-    # https://gitlab.com/libtiff/libtiff/issues/173
-    # This change isn't so safe as it stops compatibility with libtiff on pypi
-    # https://github.com/conda-forge/libtiff-feedstock/pull/49#issuecomment-570708183
-    # - patches/173_tif_unix_and_tif_win32_compatibility.patch
+      # https://github.com/python-pillow/Pillow/issues/4237
+      # https://gitlab.com/libtiff/libtiff/issues/173
+      # This change isn't so safe as it stops compatibility with libtiff on pypi
+      # https://github.com/conda-forge/libtiff-feedstock/pull/49#issuecomment-570708183
+      # - patches/173_tif_unix_and_tif_win32_compatibility.patch
   # Test image used for regression testing
   - url: https://github.com/python-pillow/Pillow/raw/master/Tests/images/hopper_lzw.tif
     sha256: 246e5de06ed6f4c63d8389fcb3342b18909e0f362a5a22f76f779ad52f46090d
@@ -46,17 +52,23 @@ requirements:
     - cmake  # [win]
     - ninja  # [win]
     - make  # [not win]
+    - m2-patch  # [win]
+    - patch  # [not win]
   host:
     - zlib
     - jpeg
     - xz
     - zstd
+    - lerc
+    - libdeflate
+    - jbig
     - libwebp-base  # [linux or osx]
   run:
     - zlib
     - jpeg
     - xz
     - zstd
+    - jbig
     - libwebp-base  # [linux or osx]
 
 test:
