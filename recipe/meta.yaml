@@ -46,7 +46,9 @@ requirements:
     - cmake  # [win]
     - ninja  # [win]
     - make  # [not win]
-  host:
+    - patch       # [not win]
+    - m2-patch    # [win]
+   host:
     - zlib
     - jpeg
     - xz
