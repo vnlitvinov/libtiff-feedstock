@@ -48,7 +48,7 @@ requirements:
     - make  # [not win]
     - patch       # [not win]
     - m2-patch    # [win]
-   host:
+  host:
     - zlib
     - jpeg
     - xz
